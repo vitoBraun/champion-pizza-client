@@ -125,8 +125,8 @@ const CatalogItem = (props) => {
     }
 
     if (
-    props.product.categoryName.toUpperCase() === "Пицца".toUpperCase() ||
-    props.product.categoryName === "Напитки")
+      props.product.categoryName.toUpperCase() === "Пицца".toUpperCase() ||
+      props.product.categoryName === "Напитки")
     // props.product.variants.length > 1
     {
       return (
@@ -158,7 +158,7 @@ const CatalogItem = (props) => {
             />
           </div>
           <div className="item_name_desc">
-            <h3>{props.product.name}</h3>
+            <h4>{props.product.name}</h4>
 
             <div className="description">{props.product.description}</div>
           </div>

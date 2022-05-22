@@ -36,11 +36,20 @@
   /* background: #53ceff; */
 }
 
+.item_name_desc h3 {
+  font-weight: 100;
+
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  /* height: fit-content; */
+  /* background: #53ceff; */
+}
+
 .description {
   text-align: left;
-  font-family: "RobotoRegular";
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   font-size: 14px;
   color: #797876;
+  font-weight: 200;
   /* background: #ff5d53; */
 }
 
@@ -93,6 +102,7 @@
 .variant-weight-text {
   color: #777777;
 }
+
 .variant-price-text {
   font-size: 30px;
 }
@@ -142,4 +152,3 @@
   position: relative;
   margin-top: auto;
 }
-
