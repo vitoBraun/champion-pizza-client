@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../styles/catalog-item.css";
 
 const CatalogItem = (props) => {
   const product_variants = props.product.variants;
   const variantDefault = product_variants.length - 1;
+
+  // const variantDefault2 = product_variants.filter((variant) => variant.visible);
+
+  // console.log(variantDefault2.length - 1);
+
   const variantId = product_variants[variantDefault]._id;
   const variantPrice = product_variants[variantDefault].price;
   const variantWeight = product_variants[variantDefault].weight;
@@ -18,13 +23,11 @@ const CatalogItem = (props) => {
     weightUnit = "гр.";
   }
 
-  const [activeVariant, setActiveVariant] = React.useState(variantDefault);
-  const [activeVariantId, setActiveVariantId] = React.useState(variantId);
-  const [activeVariantPrice, setActiveVariantPrice] =
-    React.useState(variantPrice);
-  const [activeVariantWeight, setActiveVariantweight] =
-    React.useState(variantWeight);
-  const [activeDough, setActiveDough] = React.useState(0);
+  const [activeVariant, setActiveVariant] = useState(variantDefault);
+  const [activeVariantId, setActiveVariantId] = useState(variantId);
+  const [activeVariantPrice, setActiveVariantPrice] = useState(variantPrice);
+  const [activeVariantWeight, setActiveVariantweight] = useState(variantWeight);
+  const [activeDough, setActiveDough] = useState(0);
 
   const addToCart = () => {
     const obj = {
@@ -96,28 +99,36 @@ const CatalogItem = (props) => {
   const VariantSwitch = (props) => {
     var variants = null;
     if (product_variants.length > 1) {
-      variants = product_variants.map((variant, index) => (
-        <button
-          onClick={() =>
-            onSelectVariant(index, variant._id, variant.price, variant.weight)
-          }
-          key={variant._id}
-          className={
-            activeVariant === index
-              ? "variant-selector-item-active"
-              : "variant-selector-group-item"
-          }
-        >
-          {variant.variantName}
-        </button>
-      ));
+      variants = product_variants.map(
+        (variant, index) =>
+          variant.visible && (
+            <button
+              onClick={() =>
+                onSelectVariant(
+                  index,
+                  variant._id,
+                  variant.price,
+                  variant.weight
+                )
+              }
+              key={variant._id}
+              className={
+                activeVariant === index
+                  ? "variant-selector-item-active"
+                  : "variant-selector-group-item"
+              }
+            >
+              {variant.variantName}
+            </button>
+          )
+      );
     }
 
-    if (
-      // props.product.categoryName.toUpperCase() === "Пицца".toUpperCase() ||
-      // props.product.categoryName === "Напитки"
-      props.product.variants.length > 1
-    ) {
+    // if (
+    // props.product.categoryName.toUpperCase() === "Пицца".toUpperCase() ||
+    // props.product.categoryName === "Напитки"
+    // props.product.variants.length > 1
+    {
       return (
         <>
           <div
@@ -133,34 +144,38 @@ const CatalogItem = (props) => {
   };
 
   return (
-    <div className="catalogItem">
-      <div className="img_wrapper exmpl">
-        <img
-          src={"../images/" + props.product.image}
-          alt={props.product.name}
-          onError={(e) => {
-            e.target.onerror = null;
-            e.target.src = "template/img/noimage.png";
-          }}
-        />
-      </div>
-      <div className="item_name_desc">
-        <h3>{props.product.name}</h3>
+    <>
+      {product_variants.filter((variant) => variant.visible).length > 0 && (
+        <div className="catalogItem">
+          <div className="img_wrapper exmpl">
+            <img
+              src={"/images/" + props.product.image}
+              alt={props.product.name}
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = "template/img/noimage.png";
+              }}
+            />
+          </div>
+          <div className="item_name_desc">
+            <h3>{props.product.name}</h3>
 
-        <div className="description">{props.product.description}</div>
-      </div>
-      <div className="variant-price-weight-group">
-        <div className="pg-gr">
-          {activeVariantWeight} {weightUnit}
+            <div className="description">{props.product.description}</div>
+          </div>
+          <div className="variant-price-weight-group">
+            <div className="pg-gr">
+              {activeVariantWeight} {weightUnit}
+            </div>
+            <div className="pg-pr">{activeVariantPrice} ₽</div>
+          </div>
+          <DoughSwitch product={props.product} />
+          <VariantSwitch product={props.product} />
+          <button className="add-to-cart" onClick={addToCart}>
+            В корзину{" "}
+          </button>
         </div>
-        <div className="pg-pr">{activeVariantPrice} ₽</div>
-      </div>
-      <DoughSwitch product={props.product} />
-      <VariantSwitch product={props.product} />
-      <button className="add-to-cart" onClick={addToCart}>
-        В корзину{" "}
-      </button>
-    </div>
+      )}
+    </>
   );
 };
 

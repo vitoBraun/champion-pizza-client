@@ -10,13 +10,14 @@
 
 .header {
   /* position: fixed; */
-
+  position: relative;
   z-index: 9;
   width: 100vw;
   background-color: rgb(255, 255, 255);
   /* background-color: rgb(197, 21, 21); */
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  vertical-align: middle;
+  /* vertical-align: middle; */
+  /* height :100px; */
 }
 
 .container {
@@ -50,6 +51,7 @@
   height: 1px;
   top: 9px;
 }
+
 .burger_butt:before,
 .burger_butt:after {
   content: "";
@@ -59,9 +61,11 @@
   height: 1px;
   left: 0;
 }
+
 .burger_butt:before {
   top: 0;
 }
+
 .burger_butt:after {
   bottom: 0;
 }
@@ -72,6 +76,7 @@
     display: none;
     z-index: 1;
   }
+
   .navbar_brand1 {
     position: absolute;
     margin: 0 50vw;
@@ -86,28 +91,35 @@
     align-items: center;
     margin-left: 5px;
   }
+
   .lines-btn {
     display: block;
     cursor: pointer;
   }
+
   .burger_butt {
     display: block;
     cursor: pointer;
   }
+
   .cartimg {
     max-height: 40px;
   }
+
   .callback {
     display: none;
     width: 90px;
   }
+
   .rightnav {
     width: auto;
   }
+
   .phone_number {
     font-size: 24px;
     display: none;
   }
+
   .navbar_menu_pc {
     display: none;
   }
@@ -115,6 +127,7 @@
   .container {
     justify-content: space-between;
   }
+
   .header {
     padding-top: 10px;
     padding-bottom: 10px;
@@ -134,16 +147,18 @@
   .header_menu_mobile {
     display: none;
   }
+
   .navbar_menu_mobile {
     display: none;
   }
+
   .hm_container {
     display: none;
   }
 
   .header {
-    padding-top: 20px;
-    padding-bottom: 20px;
+    padding-top: 4px;
+    padding-bottom: 4px;
   }
 }
 
@@ -339,13 +354,16 @@
 .my-node-enter {
   opacity: 0;
 }
+
 .my-node-enter-active {
   opacity: 1;
   transition: opacity 200ms;
 }
+
 .my-node-exit {
   opacity: 1;
 }
+
 .my-node-exit-active {
   opacity: 0;
   transition: opacity 200ms;
