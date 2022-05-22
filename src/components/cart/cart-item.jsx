@@ -44,20 +44,20 @@ const CartItem = ({
       </td>
       <td className="tg-baqh">
         <div className="cart-description">
-          {categoryName.toUpperCase() === "Пицца".toUpperCase() ? (
-            <>
+          {categoryName.toUpperCase() === "Пицца".toUpperCase() ?
+            <div>
               <b>
                 {name} {variantName}
               </b>{" "}
               <br /> {dough} тесто
-            </>
-          ) : (
-            <>
+            </div>
+            :
+            <div>
               <b>
                 {name} {variantName}
               </b>
-            </>
-          )}
+            </div>
+          }
         </div>
       </td>
       <td className="tg-baqh">
@@ -83,7 +83,7 @@ const CartItem = ({
       </td>
       <td className="tg-baqh">
         {" "}
-        <div div className="total-price">
+        <div className="total-price">
           {totalItemPrice}₽
         </div>
       </td>

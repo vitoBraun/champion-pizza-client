@@ -124,9 +124,9 @@ const CatalogItem = (props) => {
       );
     }
 
-    // if (
-    // props.product.categoryName.toUpperCase() === "Пицца".toUpperCase() ||
-    // props.product.categoryName === "Напитки"
+    if (
+    props.product.categoryName.toUpperCase() === "Пицца".toUpperCase() ||
+    props.product.categoryName === "Напитки")
     // props.product.variants.length > 1
     {
       return (

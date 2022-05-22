@@ -18,7 +18,6 @@ const Catalog = () => {
   };
 
   try {
-    console.log(items);
     // if (!isLoaded) {
     //   return Array(10)
     //     .fill(0)
@@ -28,7 +27,7 @@ const Catalog = () => {
     const shop = items.map(
       (catalog) =>
         catalog.visible && (
-          <>
+          <div key={catalog.catalogName + catalog._id}>
             <div key={catalog._id}>
               {catalog.products.length > 0 && (
                 <h3 id={"category" + catalog.categoryName}>
@@ -42,7 +41,7 @@ const Catalog = () => {
                   product.visible && (
                     <CatalogItem
                       onClickAddProduct={handleAddToCart}
-                      key={product._id}
+                      key={product.name + ' ' + product._id}
                       product={product}
                       categoryName={catalog.categoryName}
                       categoryId={catalog._id}
@@ -50,7 +49,7 @@ const Catalog = () => {
                   )
               )}
             </div>
-          </>
+          </div>
         )
     );
     return <div className="catalog">{shop}</div>;

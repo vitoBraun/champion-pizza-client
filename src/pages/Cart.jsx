@@ -109,7 +109,7 @@ const Cart = () => {
         <img src="/template/img/logo.svg" alt="" />
       </div>
 
-      {totalCount ? (
+      {totalCount ?
         <div className="cart-container">
           <h4>Проверьте ваш заказ:</h4>
           <table className="tg">
@@ -140,8 +140,8 @@ const Cart = () => {
             </div>
           </div>
         </div>
-      ) : (
-        <>
+        :
+        <div>
           В корзине пусто
           <br />
           <img
@@ -151,8 +151,8 @@ const Cart = () => {
             alt="cartImage"
             src="/template/img/cart.png"
           />
-        </>
-      )}
+        </div>
+      }
       <br />
       <div style={{ width: "100%", textAlign: "center" }}>
         <Link to="/" className="grayLink">

@@ -7,7 +7,6 @@ export const placeNewOrder = async (orderObj, customer) => {
       customer: customer,
     })
     .then((data) => {
-      console.log(data);
       // setOrderPlaced(true);
     });
   // .catch((err) => {
