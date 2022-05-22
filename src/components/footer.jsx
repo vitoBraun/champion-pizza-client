@@ -47,7 +47,7 @@ const footer = () => {
 
           <div className="col-md-4 col-sm-6 col-xs-12">
             <ul className="social-icons">
-              <li><a className="facebook" href="http://vk.com"><img alt="vk" src="/template/img/VK.com-logo.svg" height="27px" /></a></li>
+              <li><a href="https://vk.com/champion_pizza17" target="_blank"><img alt="vk" src="/template/img/VK.com-logo.png" height="27px" /></a></li>
             </ul>
           </div>
         </div>
