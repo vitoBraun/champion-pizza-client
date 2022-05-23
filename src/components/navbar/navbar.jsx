@@ -10,6 +10,13 @@ const navbar = () => {
   const { totalPrice, totalCount } = useSelector(({ cart }) => cart);
 
   const handleNav = () => {
+    
+    if (burgerToggle === true) {
+      setBurgerToggle(false);
+    } else {
+      setBurgerToggle(true);
+    }
+
     if (isOpen === true) {
       isOpenToggle(false);
     } else {
@@ -18,6 +25,7 @@ const navbar = () => {
   };
 
   const [isOpen, isOpenToggle] = useState(false);
+  const [burgerToggle, setBurgerToggle] = useState(false);
   const menuStyle = useSpring({
     opacity: !isOpen ? "0" : "1",
     display: !isOpen ? "none" : "block",
@@ -33,14 +41,19 @@ const navbar = () => {
             </a>
           </div>
         </div>
-        <div id="container" className="container">
+        <div id="container" className="container"><div className="burger">
           <div
-            className="burger_butt"
+            className={burgerToggle?"burger_butt_active":"burger_butt"}
             onClick={() => {
               isOpenToggle(isOpen ? false : true);
+              setBurgerToggle(burgerToggle ? false : true);
             }}
           >
-            <span></span>
+            <span class="burger_line bline1"></span>
+            <span class="burger_line bline2"></span>
+            <span class="burger_line bline3"></span>
+            <span class="burger_line bline4"></span>
+          </div>
           </div>
           <animated.div className="springContainer" style={menuStyle}>
             <div className="header_menu_mobile">
