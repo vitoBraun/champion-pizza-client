@@ -1,7 +1,7 @@
 import "../../styles/catalog.css";
 import React, { useEffect } from "react";
 import CatalogItem from "./catalog-item";
-// import CatalogItemLoading from "./catalog-item-loading";
+import CatalogItemLoading from "./catalog-item-loading";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchProducts } from "../../redux/actions/products";
 import { addProductToCart } from "../../redux/actions/cart";
@@ -12,17 +12,17 @@ const Catalog = () => {
   }, []);
   const dispatch = useDispatch();
   const items = useSelector(({ products }) => products.items);
-  // const isLoaded = useSelector(({ products }) => products.isLoaded);
+  const isLoaded = useSelector(({ products }) => products.isLoaded);
   const handleAddToCart = (obj) => {
     dispatch(addProductToCart(obj));
   };
 
   try {
-    // if (!isLoaded) {
-    //   return Array(10)
-    //     .fill(0)
-    //     .map((_, index) => <CatalogItemLoading key={index} />);
-    // }
+    if (!isLoaded) {
+      return <div className="catalog">{Array(10)
+        .fill(0)
+        .map((_, index) => <CatalogItemLoading key={index} />)}</div>;
+    }
 
     const shop = items.map(
       (catalog) =>
