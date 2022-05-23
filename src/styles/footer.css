@@ -79,7 +79,14 @@
 }
 
 .copyright-text {
-  margin: 0
+  margin: 0;
+  width: fit-content;
+  display: flex;
+}
+
+.socials {
+  display: inline;
+  margin-bottom: 20px;
 }
 
 @media (max-width:991px) {
