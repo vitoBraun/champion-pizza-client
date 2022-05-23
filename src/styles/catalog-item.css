@@ -50,7 +50,8 @@
   font-size: 14px;
   color: #797876;
   font-weight: 200;
-  /* background: #ff5d53; */
+  background: #ff5d53;
+  height: 84px;
 }
 
 .add-to-cart {
