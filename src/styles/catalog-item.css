@@ -63,7 +63,7 @@
   position: relative;
   justify-content: center;
   text-decoration: none;
-  font-family: "RobotoRegular";
+  /* font-family: "RobotoRegular"; */
   font-style: normal;
   font-size: 18px;
   width: 100%;
@@ -108,7 +108,7 @@
 }
 
 .variant-selector-group {
-  font-family: "RobotoRegular";
+  /* font-family: "RobotoRegular"; */
   font-size: 14px;
   position: relative;
   overflow: hidden;
