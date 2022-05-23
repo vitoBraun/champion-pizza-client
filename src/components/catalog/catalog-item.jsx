@@ -160,7 +160,7 @@ const CatalogItem = (props) => {
           <div className="item_name_desc">
             <h4>{props.product.name}</h4>
 
-            <div className="description">{props.product.description}</div>
+            {props.product.description.length>0&&<div className="description">{props.product.description}</div>}
           </div>
           <div className="variant-price-weight-group">
             <div className="pg-gr">
