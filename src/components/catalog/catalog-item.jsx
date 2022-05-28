@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "../../styles/catalog-item.css";
-import CatalogItemButton from "./catalog-item-button";
 
 const CatalogItem = (props) => {
   const product_variants = props.product.variants;
@@ -127,9 +126,9 @@ const CatalogItem = (props) => {
 
     if (
       props.product.categoryName.toUpperCase() === "Пицца".toUpperCase() ||
-      props.product.categoryName === "Напитки"
-    ) {
-      // props.product.variants.length > 1
+      props.product.categoryName === "Напитки")
+    // props.product.variants.length > 1
+    {
       return (
         <>
           <div
@@ -161,9 +160,7 @@ const CatalogItem = (props) => {
           <div className="item_name_desc">
             <h4>{props.product.name}</h4>
 
-            {props.product.description.length > 0 && (
-              <div className="description">{props.product.description}</div>
-            )}
+            {props.product.description.length>0&&<div className="description">{props.product.description}</div>}
           </div>
           <div className="variant-price-weight-group">
             <div className="pg-gr">
@@ -173,7 +170,9 @@ const CatalogItem = (props) => {
           </div>
           <DoughSwitch product={props.product} />
           <VariantSwitch product={props.product} />
-          <CatalogItemButton onClickAdd={addToCart}/>
+          <button className="add-to-cart" onClick={addToCart}>
+            В корзину{" "}
+          </button>
         </div>
       )}
     </>
