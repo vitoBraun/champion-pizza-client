@@ -72,7 +72,7 @@ const navbar = () => {
               <div className="hm_container">
                 <a
                   style={{ color: "black" }}
-                  href="https://yandex.ru/maps/11333/kyzyl/house/ulitsa_lenina_64/bU0YcgVkSUcFQFtrfXtweH9qbQ==/?ll=94.424236%2C51.719417&z=19"
+                  href="https://yandex.ru/maps/-/CCUJa4aBOB"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
@@ -81,7 +81,7 @@ const navbar = () => {
                     src="/template/img/adress-icon.png"
                     alt=""
                   />
-                  г. Кызыл, ул. Ленина 64
+                  г. Кызыл, Бай-Хаакская 2/1, ТД Артыш
                 </a>
               </div>
 
