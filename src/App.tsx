@@ -1,4 +1,3 @@
-// import "./styles/app.css";
 import React from "react";
 import { Home, Cart, Checkout } from "./pages";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -8,9 +7,9 @@ function App() {
     <BrowserRouter>
       <div className="wrapper">
         <Routes>
-          <Route path="/" exact element={<Home />} />
-          <Route path="/cart" exact element={<Cart />} />
-          <Route path="/checkout" exact element={<Checkout />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       </div>
     </BrowserRouter>
