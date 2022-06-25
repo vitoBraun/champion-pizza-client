@@ -15,17 +15,8 @@ export interface CartItemProps {
   doughType: doughType;
   totalItemPrice: number;
   totalItemCount: number;
-  onRemove: (
-    variantId: CartItemProps["variantId"],
-    doughType: CartItemProps["doughType"]
-  ) => {};
-  onPlus: (
-    variantId: CartItemProps["variantId"],
-    doughType: CartItemProps["doughType"]
-  ) => {};
-  onMinus: (
-    variantId: CartItemProps["variantId"],
-    doughType: CartItemProps["doughType"]
-  ) => {};
+  onRemove: ({ variantId, doughType }: CartAction) => void;
+  onPlus: ({ variantId, doughType }: CartAction) => void;
+  onMinus: ({ variantId, doughType }: CartAction) => void;
   categoryName: string;
 }

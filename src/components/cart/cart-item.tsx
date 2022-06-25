@@ -15,13 +15,13 @@ const CartItem = ({
   categoryName,
 }: CartItemProps) => {
   const handleRemoveClick = () => {
-    onRemove(variantId, doughType);
+    onRemove({variantId, doughType});
   };
   const handlePlusItem = () => {
-    onPlus(variantId, doughType);
+    onPlus({variantId, doughType});
   };
   const handleMinusItem = () => {
-    onMinus(variantId, doughType);
+    onMinus({variantId, doughType});
   };
 
   return (

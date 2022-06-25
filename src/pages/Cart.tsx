@@ -13,11 +13,10 @@ import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import { CartAction } from "../types/CartTypes";
 import { RootState } from "../redux/store";
-import { OrderObj } from "../types/OrderTypes";
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const { totalPrice, totalCount, items }: OrderObj = useSelector(
+  const { totalPrice, totalCount, items } = useSelector(
     ({ cart }: RootState) => cart
   );
 
@@ -52,7 +51,7 @@ const Cart = () => {
     };
   });
 
-  const cartItem = (obj, doughType) => {
+  const cartItem = (obj: any, doughType: CartAction["doughType"]) => {
     var totalItemCount,
       totalItemPrice = null;
 
@@ -81,7 +80,7 @@ const Cart = () => {
         variantName={obj.object.variantName}
         image={obj.object.image}
         price={obj.object.price}
-        dough={doughType}
+        doughType={doughType}
         totalItemPrice={totalItemPrice}
         totalItemCount={totalItemCount}
         onRemove={onRemoveItem}
@@ -92,7 +91,7 @@ const Cart = () => {
     );
   };
 
-  const allCartItems = [];
+  const allCartItems: any[] = [];
 
   productsInCart.map((obj) => {
     if (obj.object.categoryName.toUpperCase() === "Пицца".toUpperCase()) {

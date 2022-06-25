@@ -1,5 +1,25 @@
+import { doughType } from "./CartTypes";
+
 interface OrderItem {
-  items: [];
+  id: string;
+  items: OrderVariantItem[];
+  thinCount: number;
+  thinTotalPrice: number;
+  totalPrice: number;
+  traditionCount: number;
+  traditionTotalPrice: number;
+}
+
+interface OrderVariantItem {
+  categoryId?: string;
+  categoryName: string;
+  dough: doughType;
+  image: string;
+  name: string;
+  price: number;
+  productId: string;
+  variantId: string;
+  variantName: string;
 }
 
 export interface OrderObj {

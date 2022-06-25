@@ -3,7 +3,12 @@ const initialState = {
   isLoaded: false,
 };
 
-const products = (state = initialState, action) => {
+interface Action {
+  type: string;
+  payload: any;
+}
+
+const products = (state = initialState, action: Action) => {
   if (action.type === "SET_PRODUCTS") {
     return {
       ...state,
