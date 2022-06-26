@@ -1,6 +1,8 @@
 import axios from "axios";
+import { CartAction } from "../../types/CartTypes";
+import { Customer, OrderObj } from "../../types/OrderTypes";
 
-export const placeNewOrder = async (orderObj, customer) => {
+export const placeNewOrder = async (orderObj: OrderObj, customer: Customer) => {
   await axios
     .post("/api/order/neworder", {
       orderObj: orderObj,
@@ -16,7 +18,7 @@ export const placeNewOrder = async (orderObj, customer) => {
   // });
 };
 
-export const addProductToCart = (obj) => ({
+export const addProductToCart = (obj: {}) => ({
   type: "ADD_PRODUCT_CART",
   payload: obj,
 });
@@ -25,20 +27,23 @@ export const clearCart = () => ({
   type: "CLEAR_CART",
 });
 
-export const removeCartItem = (variantId, dough = null) => ({
+export const removeCartItem = ({
+  variantId,
+  doughType = null,
+}: CartAction) => ({
   type: "REMOVE_CART_ITEM",
   payload: variantId,
-  payloadDough: dough,
+  payloadDough: doughType,
 });
 
-export const plusCartItem = (variantId, dough = null) => ({
+export const plusCartItem = ({ variantId, doughType = null }: CartAction) => ({
   type: "PLUS_CART_ITEM",
   payload: variantId,
-  payloadDough: dough,
+  payloadDough: doughType,
 });
 
-export const minusCartItem = (variantId, dough = null) => ({
+export const minusCartItem = ({ variantId, doughType = null }: CartAction) => ({
   type: "MINUS_CART_ITEM",
   payload: variantId,
-  payloadDough: dough,
+  payloadDough: doughType,
 });

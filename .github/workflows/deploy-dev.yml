@@ -3,7 +3,7 @@ name: Build and deploy to production
 on:
   push:
     branches:
-      - master
+      - dev
 
 jobs:
   build-and-deploy:
@@ -28,7 +28,7 @@ jobs:
           port: ${{ secrets.REMOTE_PORT }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /home/${{ secrets.REMOTE_USER }}/deploy/champion-pizza/master/client/ && sudo rm -r * && sudo service nginx restart
+            cd /home/${{ secrets.REMOTE_USER }}/deploy/champion-pizza/dev/client/ && sudo rm -r * && sudo service nginx restart
 
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@v2.1.5
@@ -38,4 +38,4 @@ jobs:
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
-          TARGET: /home/${{ secrets.REMOTE_USER }}/deploy/champion-pizza/master/client/
+          TARGET: /home/${{ secrets.REMOTE_USER }}/deploy/champion-pizza/dev/client/
