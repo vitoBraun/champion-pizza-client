@@ -1,9 +1,9 @@
 import React from "react";
-import { Home, Cart, Checkout } from "./pages";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 import * as Sentry from "@sentry/react";
 import { BrowserTracing } from "@sentry/tracing";
 import "./styles/app.css";
+import Router from "./Router";
 
 Sentry.init({
   dsn: "https://c49a23217f354a05b1ff8b5628ac1432@o1299096.ingest.sentry.io/6531268",
@@ -17,15 +17,9 @@ Sentry.init({
 
 function App() {
   return (
-    <BrowserRouter>
-      <div className="wrapper">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/checkout" element={<Checkout />} />
-        </Routes>
-      </div>
-    </BrowserRouter>
+    <div className="wrapper">
+      <Router />
+    </div>
   );
 }
 
