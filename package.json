@@ -28,7 +28,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http://localhost:5001",
+  "proxy": "http://dev.champion-pizza.ru",
   "eslintConfig": {
     "extends": [
       "react-app",
