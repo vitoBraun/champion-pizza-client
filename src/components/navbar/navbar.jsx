@@ -96,9 +96,7 @@ const navbar = () => {
           </a>
           <Categories
             className="navbar_menu_pc"
-            handleNav={function () {
-              throw new Error("Function not implemented.");
-            }}
+            handleNav={handleNav}
           />
           <div id="rightnav" className="rightnav">
             <div>

@@ -6,7 +6,7 @@ var initialState = {
   totalCount: 0,
 };
 
-enum Actions {
+const enum Actions {
   ADD_PRODUCT_CART = "ADD_PRODUCT_CART",
   PLUS_CART_ITEM = "PLUS_CART_ITEM",
   MINUS_CART_ITEM = "MINUS_CART_ITEM",
