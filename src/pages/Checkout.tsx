@@ -1,12 +1,13 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import "../styles/cart.css";
-// import CartItem from "../components/cart/cart-item";
 import { useSelector } from "react-redux";
 import { Form, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { clearCart, placeNewOrder } from "../redux/actions/cart";
 import "../styles/cart.css";
+import { RootState } from "../redux/store";
+import { Customer } from "../types/OrderTypes";
 
 const Checkout = () => {
   const dispatch = useDispatch();
@@ -16,10 +17,10 @@ const Checkout = () => {
   const [addressRequired, setAddressRequired] = useState(true);
   const [orderPlaced, setOrderPlaced] = useState(false);
 
-  const name = useRef();
-  const address = useRef();
-  const comment = useRef();
-  const phone = useRef();
+  const name = useRef<any>();
+  const address = useRef<any>();
+  const comment = useRef<any>();
+  const phone = useRef<any>();
 
   useEffect(() => {
     name.current.value = localStorage.getItem("name");
@@ -29,15 +30,17 @@ const Checkout = () => {
 
   const [validated, setValidated] = useState(false);
 
-  const { totalPrice, totalCount, items } = useSelector(({ cart }) => cart);
+  const { totalPrice, totalCount, items } = useSelector(
+    ({ cart }: RootState) => cart
+  );
 
-  const handleSubmit = (event) => {
+  const handleSubmit = (event: React.ChangeEvent<any>) => {
     const form = event.currentTarget;
     if (form.checkValidity() === false) {
       event.preventDefault();
       event.stopPropagation();
     } else {
-      const customer = {
+      const customer: Customer = {
         name: name.current.value,
         address: address.current.value,
         comment: comment.current.value,
@@ -47,9 +50,6 @@ const Checkout = () => {
 
       placeNewOrder({ totalPrice, totalCount, items }, customer);
       setOrderPlaced(true);
-
-      // setOrderPlaced(true);
-      //очищаем корзину
       dispatch(clearCart());
     }
     setValidated(true);
@@ -141,7 +141,7 @@ const Checkout = () => {
               <Form.Control
                 type="text"
                 as="textarea"
-                rows="2"
+                rows={2}
                 placeholder="Коментарий"
                 ref={comment}
               />
