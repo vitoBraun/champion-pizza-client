@@ -20,6 +20,16 @@ jobs:
       - run: npm install
       - run: npm run build
 
+      - name: Delete all old files from /client folder
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.REMOTE_HOST }}
+          username: ${{ secrets.REMOTE_USER }}
+          port: ${{ secrets.REMOTE_PORT }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            cd /home/${{ secrets.REMOTE_USER }}/deploy/champion-pizza/master/client/ && sudo rm -r * && sudo service nginx restart
+
       - name: Deploy to Server
         uses: easingthemes/ssh-deploy@v2.1.5
         env:
@@ -28,4 +38,4 @@ jobs:
           REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
           REMOTE_USER: ${{ secrets.REMOTE_USER }}
           REMOTE_PORT: ${{ secrets.REMOTE_PORT }}
-          TARGET: /home/${{ secrets.REMOTE_USER }}/deploy/champion-pizza/dev/client/
+          TARGET: /home/${{ secrets.REMOTE_USER }}/deploy/champion-pizza/master/client/
