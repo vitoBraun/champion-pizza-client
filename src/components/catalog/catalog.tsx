@@ -1,10 +1,5 @@
 import "../../styles/catalog.css";
-import React, {
-  ReactComponentElement,
-  ReactNode,
-  useEffect,
-  useState,
-} from "react";
+import React, { useEffect } from "react";
 import CatalogItem from "./catalog-item";
 import CatalogItemLoading from "./catalog-item-loading";
 import { useSelector, useDispatch } from "react-redux";
