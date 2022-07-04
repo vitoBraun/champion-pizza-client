@@ -11,29 +11,25 @@ import {
 } from "../redux/actions/cart";
 import { Link } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import { CartAction } from "../types/CartTypes";
-import { RootState } from "../redux/store";
 
 const Cart = () => {
   const dispatch = useDispatch();
-  const { totalPrice, totalCount, items } = useSelector(
-    ({ cart }: RootState) => cart
-  );
+  const { totalPrice, totalCount, items } = useSelector(({ cart }) => cart);
 
   const onClearCart = () => {
     dispatch(clearCart());
   };
 
-  const onRemoveItem = ({ variantId, doughType }: CartAction) => {
-    dispatch(removeCartItem({ variantId, doughType }));
+  const onRemoveItem = (variantId, doughType) => {
+    dispatch(removeCartItem(variantId, doughType));
   };
 
-  const onPlusItem = ({ variantId, doughType }: CartAction) => {
-    dispatch(plusCartItem({ variantId, doughType }));
+  const onPlusItem = (variantId, doughType) => {
+    dispatch(plusCartItem(variantId, doughType));
   };
 
-  const onMinusItem = ({ variantId, doughType }: CartAction) => {
-    dispatch(minusCartItem({ variantId, doughType }));
+  const onMinusItem = (variantId, doughType) => {
+    dispatch(minusCartItem(variantId, doughType));
   };
 
   // const placeOrder = () => {
@@ -51,7 +47,7 @@ const Cart = () => {
     };
   });
 
-  const cartItem = (obj: any, doughType: CartAction["doughType"]) => {
+  const cartItem = (obj, doughType) => {
     var totalItemCount,
       totalItemPrice = null;
 
@@ -80,7 +76,7 @@ const Cart = () => {
         variantName={obj.object.variantName}
         image={obj.object.image}
         price={obj.object.price}
-        doughType={doughType}
+        dough={doughType}
         totalItemPrice={totalItemPrice}
         totalItemCount={totalItemCount}
         onRemove={onRemoveItem}
@@ -91,7 +87,7 @@ const Cart = () => {
     );
   };
 
-  const allCartItems: any[] = [];
+  const allCartItems = [];
 
   productsInCart.map((obj) => {
     if (obj.object.categoryName.toUpperCase() === "Пицца".toUpperCase()) {
@@ -113,7 +109,7 @@ const Cart = () => {
         <img src="/template/img/logo.svg" alt="" />
       </div>
 
-      {totalCount ? (
+      {totalCount ?
         <div className="cart-container">
           <h4>Проверьте ваш заказ:</h4>
           <table className="tg">
@@ -144,7 +140,7 @@ const Cart = () => {
             </div>
           </div>
         </div>
-      ) : (
+        :
         <div>
           В корзине пусто
           <br />
@@ -156,7 +152,7 @@ const Cart = () => {
             src="/template/img/cart.png"
           />
         </div>
-      )}
+      }
       <br />
       <div style={{ width: "100%", textAlign: "center" }}>
         <Link to="/" className="grayLink">

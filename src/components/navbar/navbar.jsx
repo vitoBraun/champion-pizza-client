@@ -10,6 +10,7 @@ const navbar = () => {
   const { totalPrice, totalCount } = useSelector(({ cart }) => cart);
 
   const handleNav = () => {
+
     if (burgerToggle === true) {
       setBurgerToggle(false);
     } else {
@@ -40,21 +41,20 @@ const navbar = () => {
             </a>
           </div>
         </div>
-        <div id="container" className="container">
-          <div className="burger">
-            <div
-              className={burgerToggle ? "burger_butt_active" : "burger_butt"}
-              onClick={() => {
-                isOpenToggle(isOpen ? false : true);
-                setBurgerToggle(burgerToggle ? false : true);
-              }}
-            >
-              <span className="burger_line bline1"></span>
-              <span className="burger_line bline2"></span>
-              <span className="burger_line bline3"></span>
-              <span className="burger_line bline4"></span>
-            </div>
+        <div id="container" className="container"><div className="burger">
+          <div
+            className={burgerToggle ? "burger_butt_active" : "burger_butt"}
+            onClick={() => {
+              isOpenToggle(isOpen ? false : true);
+              setBurgerToggle(burgerToggle ? false : true);
+            }}
+          >
+            <span className="burger_line bline1"></span>
+            <span className="burger_line bline2"></span>
+            <span className="burger_line bline3"></span>
+            <span className="burger_line bline4"></span>
           </div>
+        </div>
           <animated.div className="springContainer" style={menuStyle}>
             <div className="header_menu_mobile">
               <div className="hm_container">
@@ -94,10 +94,7 @@ const navbar = () => {
           <a href="/" className="navbar_brand">
             <img src="/template/img/logo.svg" alt="" />
           </a>
-          <Categories
-            className="navbar_menu_pc"
-            handleNav={handleNav}
-          />
+          <Categories className="navbar_menu_pc" />
           <div id="rightnav" className="rightnav">
             <div>
               <a href="tel:+73942261818" className="callback">
@@ -107,8 +104,7 @@ const navbar = () => {
                 </div>
               </a>
             </div>
-            <span> Работаем ежедневно 10:00-23:00 </span>
-            <br />
+            <span> Работаем ежедневно 10:00-23:00 </span><br />
             <span> Заказы принимаются 10:00-22:45 </span>
           </div>
           <div id="cart-all" className="cart_all">

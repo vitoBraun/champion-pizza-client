@@ -1,36 +1,7 @@
-import React, { ReactElement, useState } from "react";
+import React, { useState } from "react";
 import "../../styles/catalog-item.css";
 
-interface CatalogItemProps {
-  product: {
-    variants: {
-      visible: JSX.Element;
-      variantName: any;
-      _id: string;
-      price: number;
-      weight: number | null;
-    }[];
-    categoryName: string;
-    _id: string;
-    categoryId: string;
-    name: string;
-    image: string;
-    description: string;
-  };
-  onClickAddProduct: (arg0: {
-    productId: any;
-    variantId: any;
-    categoryId: any;
-    categoryName: any;
-    name: any;
-    variantName: any;
-    image: any;
-    price: any;
-    dough: string | null;
-  }) => void;
-}
-
-const CatalogItem = (props: CatalogItemProps) => {
+const CatalogItem = (props) => {
   const product_variants = props.product.variants;
   const variantDefault = product_variants.length - 1;
 
@@ -83,14 +54,14 @@ const CatalogItem = (props: CatalogItemProps) => {
     }
   };
 
-  const DoughSwitch = (props: {
-    product: { _id: any; categoryName: string };
-  }) => {
-    return (
-      <React.Fragment>
-        {props.product.categoryName.toUpperCase() === "Пицца".toUpperCase() && (
+  const DoughSwitch = (props) => {
+    const id = props.product._id;
+    if (props.product.categoryName.toUpperCase() === "Пицца".toUpperCase()) {
+      return (
+        <>
           <div
             className="variant-selector-group"
+            product_id={id}
             onClick={() => onSelectDough()}
           >
             <button
@@ -112,24 +83,20 @@ const CatalogItem = (props: CatalogItemProps) => {
               {doughTypes[1]}
             </button>
           </div>
-        )}
-      </React.Fragment>
-    );
+        </>
+      );
+    }
+    return true;
   };
 
-  const onSelectVariant = (
-    index: React.SetStateAction<number>,
-    variantId: React.SetStateAction<string>,
-    variantPrice: React.SetStateAction<number>,
-    VariantWeight: React.SetStateAction<number | null>
-  ) => {
+  const onSelectVariant = (index, variantId, variantPrice, VariantWeight) => {
     setActiveVariant(index);
     setActiveVariantId(variantId);
     setActiveVariantPrice(variantPrice);
     setActiveVariantweight(VariantWeight);
   };
 
-  const VariantSwitch = (props: { product: { categoryName: string } }) => {
+  const VariantSwitch = (props) => {
     var variants = null;
     if (product_variants.length > 1) {
       variants = product_variants.map(
@@ -159,14 +126,14 @@ const CatalogItem = (props: CatalogItemProps) => {
 
     if (
       props.product.categoryName.toUpperCase() === "Пицца".toUpperCase() ||
-      props.product.categoryName === "Напитки"
-    ) {
-      // props.product.variants.length > 1
+      props.product.categoryName === "Напитки")
+    // props.product.variants.length > 1
+    {
       return (
         <>
           <div
             className="variant-selector-group"
-            // product_id={props.product._id}
+            product_id={props.product._id}
           >
             {variants}
           </div>
@@ -184,19 +151,16 @@ const CatalogItem = (props: CatalogItemProps) => {
             <img
               src={"/images/" + props.product.image}
               alt={props.product.name}
-              onError={(event) => {
-                (event.target as HTMLImageElement).onerror = null;
-                (event.target as HTMLImageElement).src =
-                  "template/img/noimage.png";
+              onError={(e) => {
+                e.target.onerror = null;
+                e.target.src = "template/img/noimage.png";
               }}
             />
           </div>
           <div className="item_name_desc">
             <h4>{props.product.name}</h4>
 
-            {props.product.description.length > 0 && (
-              <div className="description">{props.product.description}</div>
-            )}
+            {props.product.description.length>0&&<div className="description">{props.product.description}</div>}
           </div>
           <div className="variant-price-weight-group">
             <div className="pg-gr">

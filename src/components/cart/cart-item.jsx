@@ -1,31 +1,30 @@
 import React from "react";
-import { CartItemProps } from "../../types/CartTypes";
 
 const CartItem = ({
   variantId,
   name,
   variantName,
   image,
-  doughType,
+  dough,
   totalItemPrice,
   totalItemCount,
   onRemove,
   onMinus,
   onPlus,
   categoryName,
-}: CartItemProps) => {
+}) => {
   const handleRemoveClick = () => {
-    onRemove({variantId, doughType});
+    onRemove(variantId, dough);
   };
   const handlePlusItem = () => {
-    onPlus({variantId, doughType});
+    onPlus(variantId, dough);
   };
   const handleMinusItem = () => {
-    onMinus({variantId, doughType});
+    onMinus(variantId, dough);
   };
 
   return (
-    <tr style={{ border: 1 }}>
+    <tr border="1">
       <td className="tg-baqh">
         {" "}
         <span className="delete-btn" onClick={handleRemoveClick}></span>
@@ -36,30 +35,29 @@ const CartItem = ({
           <img
             alt={name + variantName}
             src={"../images/" + image}
-            onError={(event) => {
-              (event.target as HTMLImageElement).onerror = null;
-              (event.target as HTMLImageElement).src =
-                "template/img/noimage.png";
+            onError={(e) => {
+              e.target.onerror = null;
+              e.target.src = "template/img/noimage.png";
             }}
           />
         </div>
       </td>
       <td className="tg-baqh">
         <div className="cart-description">
-          {categoryName.toUpperCase() === "Пицца".toUpperCase() ? (
+          {categoryName.toUpperCase() === "Пицца".toUpperCase() ?
             <div>
               <b>
                 {name} {variantName}
               </b>{" "}
-              <br /> {doughType} тесто
+              <br /> {dough} тесто
             </div>
-          ) : (
+            :
             <div>
               <b>
                 {name} {variantName}
               </b>
             </div>
-          )}
+          }
         </div>
       </td>
       <td className="tg-baqh">
@@ -85,7 +83,9 @@ const CartItem = ({
       </td>
       <td className="tg-baqh">
         {" "}
-        <div className="total-price">{totalItemPrice}₽</div>
+        <div className="total-price">
+          {totalItemPrice}₽
+        </div>
       </td>
     </tr>
   );

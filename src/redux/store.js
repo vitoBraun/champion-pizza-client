@@ -7,17 +7,11 @@ import storage from "redux-persist/lib/storage";
 const persistConfig = {
   key: "persist",
   storage,
-  blacklist: ["products"],
+  blacklist: ['products']
 };
-declare global {
-  interface Window {
-    __REDUX_DEVTOOLS_EXTENSION_COMPOSE__?: typeof compose;
-  }
-}
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
-const composeEnhancers =
-  (window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ as typeof compose) || compose;
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 //старая версия без персиста
 // const store = createStore(rootReducer, composeEnhancers(applyMiddleware(thunk)));
@@ -28,11 +22,6 @@ const store = createStore(
 );
 
 const persistore = persistStore(store);
-
+export default store;
 export { persistore };
 
-export type RootState = ReturnType<typeof store.getState>;
-
-export type AppDispatch = typeof store.dispatch;
-
-export default store;
