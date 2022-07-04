@@ -1,18 +1,49 @@
-import React, { useState } from "react";
+import React, { ReactElement, useState } from "react";
 import "../../styles/catalog-item.css";
-import { doughType } from "../../types/CartTypes";
-import { CatalogItemProps } from "../../types/CatalogTypes";
+
+interface CatalogItemProps {
+  product: {
+    variants: {
+      visible: JSX.Element;
+      variantName: any;
+      _id: string;
+      price: number;
+      weight: number | null;
+    }[];
+    categoryName: string;
+    _id: string;
+    categoryId: string;
+    name: string;
+    image: string;
+    description: string;
+  };
+  onClickAddProduct: (arg0: {
+    productId: any;
+    variantId: any;
+    categoryId: any;
+    categoryName: any;
+    name: any;
+    variantName: any;
+    image: any;
+    price: any;
+    dough: string | null;
+  }) => void;
+}
 
 const CatalogItem = (props: CatalogItemProps) => {
   const product_variants = props.product.variants;
   const variantDefault = product_variants.length - 1;
+
+  // const variantDefault2 = product_variants.filter((variant) => variant.visible);
+
+  // console.log(variantDefault2.length - 1);
 
   const variantId = product_variants[variantDefault]._id;
   const variantPrice = product_variants[variantDefault].price;
   const variantWeight = product_variants[variantDefault].weight;
 
   var weightUnit = "";
-  const doughTypes: [doughType, doughType] = ["Традиционное", "Тонкое"];
+  const doughTypes = ["Традиционное", "Тонкое"];
 
   if (
     props.product.categoryName !== "Напитки" &&
@@ -37,7 +68,7 @@ const CatalogItem = (props: CatalogItemProps) => {
       variantName: props.product.variants[activeVariant].variantName,
       image: props.product.image,
       price: activeVariantPrice,
-      doughType:
+      dough:
         props.product.categoryName.toUpperCase() === "Пицца".toUpperCase()
           ? doughTypes[activeDough]
           : null,
@@ -52,11 +83,9 @@ const CatalogItem = (props: CatalogItemProps) => {
     }
   };
 
-  interface DoughSwitchProps {
-    product: { _id: string; categoryName: string };
-  }
-
-  const DoughSwitch = (props: DoughSwitchProps) => {
+  const DoughSwitch = (props: {
+    product: { _id: any; categoryName: string };
+  }) => {
     return (
       <React.Fragment>
         {props.product.categoryName.toUpperCase() === "Пицца".toUpperCase() && (
@@ -100,11 +129,7 @@ const CatalogItem = (props: CatalogItemProps) => {
     setActiveVariantweight(VariantWeight);
   };
 
-  interface VariantSwitchProps {
-    product: { categoryName: string };
-  }
-
-  const VariantSwitch = (props: VariantSwitchProps) => {
+  const VariantSwitch = (props: { product: { categoryName: string } }) => {
     var variants = null;
     if (product_variants.length > 1) {
       variants = product_variants.map(
@@ -136,17 +161,23 @@ const CatalogItem = (props: CatalogItemProps) => {
       props.product.categoryName.toUpperCase() === "Пицца".toUpperCase() ||
       props.product.categoryName === "Напитки"
     ) {
+      // props.product.variants.length > 1
       return (
-        <React.Fragment>
-          <div className="variant-selector-group">{variants}</div>
-        </React.Fragment>
+        <>
+          <div
+            className="variant-selector-group"
+            // product_id={props.product._id}
+          >
+            {variants}
+          </div>
+        </>
       );
     }
     return null;
   };
 
   return (
-    <React.Fragment>
+    <>
       {product_variants.filter((variant) => variant.visible).length > 0 && (
         <div className="catalogItem">
           <div className="img_wrapper exmpl">
@@ -180,7 +211,7 @@ const CatalogItem = (props: CatalogItemProps) => {
           </button>
         </div>
       )}
-    </React.Fragment>
+    </>
   );
 };
 

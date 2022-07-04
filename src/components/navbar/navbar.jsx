@@ -1,11 +1,10 @@
 import React, { useState } from "react";
-import Categories from "./catalog/categories";
-import "../styles/navbar.css";
+import Categories from "../catalog/categories";
+import "../../styles/navbar.css";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { Navbar } from "react-bootstrap";
 import { useSpring, animated } from "react-spring";
-
 
 const navbar = () => {
   const { totalPrice, totalCount } = useSelector(({ cart }) => cart);
@@ -95,7 +94,10 @@ const navbar = () => {
           <a href="/" className="navbar_brand">
             <img src="/template/img/logo.svg" alt="" />
           </a>
-          <Categories className="navbar_menu_pc" />
+          <Categories
+            className="navbar_menu_pc"
+            handleNav={handleNav}
+          />
           <div id="rightnav" className="rightnav">
             <div>
               <a href="tel:+73942261818" className="callback">
